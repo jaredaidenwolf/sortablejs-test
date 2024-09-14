@@ -1,0 +1,23 @@
+<h1>Tasks</h1>
+<p>Drag and drop the tasks to reorder them. Refresh the page to see the updated positions.</p>
+
+<table class="table table-striped" data-controller="sortable" data-sortable-group="tasks">
+  <thead>
+    <tr>
+      <th>Move</th>
+      <th>Name</th>
+      <th>Position</th>
+    </tr>
+  </thead>
+  <tbody data-sortable-target="list">
+    <% @tasks.each do |task| %>
+      <tr data-id="<%= task.id %>" data-sortable-url="<%= task_positions_path(task) %>">
+        <td>
+          <%= image_tag "move.svg", data: {sortable_handle: true} %>
+        </td>
+        <td><%= task.name %></td>
+        <td><%= task.position %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
